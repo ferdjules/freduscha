@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Freduscha</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="XXX">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <canvas id="canvas"></canvas>
+    <div class="w3-top">
+      <div class="w3-bar w3-center" id="header_background">
+        <br>
+        <br>
+        <br>
+        <a href="index.html" class="w3-button w3-xxlarge w3-wide brand"><b>freduscha</b></a>
+        <br>
+        <br>
+        <a href="work.html" class="w3-button work-tab">WORK</a>|
+        <a href="about.html" class="w3-button about-tab">ABOUT</a>|
+        <a href="contact.html" class="w3-button contact-tab">CONTACT</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Copyright © 2020 Freduscha</p>
+    </div>
+  </body>
+
+  <script>
+    var HeartsBackground = {
+    heartHeight: 150,
+    heartWidth: 160,
+    hearts: [],
+    heartImage: ['/images/products/panties/1.png'],
+    maxHearts: 8,
+    minScale: 0.4,
+    draw: function() {
+      this.setCanvasSize();
+      this.ctx.clearRect(0, 0, this.w, this.h);
+      var hee = this.heartImage[Math.floor(Math.random() * this.heartImage.length)];
+      for (var i = 0; i < this.hearts.length; i++) {
+        var heart = this.hearts[i];
+        heart.image = new Image();
+        heart.image.style.height = heart.height;
+        heart.image.src = hee; //this.heartImage (wenn Freddy Randomness nicht will)
+        this.ctx.globalAlpha = heart.opacity;
+        this.ctx.drawImage (heart.image, heart.x, heart.y, heart.width, heart.height);
+      }
+      this.move();
+    },
+    move: function() {
+      for(var b = 0; b < this.hearts.length; b++) {
+        var heart = this.hearts[b];
+        heart.y += heart.ys;
+        if(heart.y > this.h) {
+          heart.x = Math.random() * this.w;
+          heart.y = -1 * this.heartHeight;
+        }
+      }
+    },
+    setCanvasSize: function() {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
+      this.w = this.canvas.width;
+      this.h = this.canvas.height;
+    },
+    initialize: function() {
+      this.canvas = $('#canvas')[0];
+
+      if(!this.canvas.getContext)
+        return;
+
+      this.setCanvasSize();
+      this.ctx = this.canvas.getContext('2d');
+
+      for(var a = 0; a < this.maxHearts; a++) {
+        var scale = (Math.random() * (1 - this.minScale)) + this.minScale;
+        this.hearts.push({
+          x: Math.random() * this.w,
+          y: Math.random() * this.h,
+          ys: Math.random() + 1,
+          height: scale * this.heartHeight,
+          width: scale * this.heartWidth,
+          opacity: scale
+        });
+      }
+
+      setInterval($.proxy(this.draw, this), 40);
+    }
+  };
+
+  $(document).ready(function(){
+    HeartsBackground.initialize();
+  });
+  </script>
+
+  <script type="text/javascript" src="actions.js"></script>
+</html>

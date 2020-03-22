@@ -1,0 +1,70 @@
+html {
+  height: 100%;
+}
+
+body {
+  font-family: "Courier New", sans-serif;
+  color: black;
+  height: 100%;
+}
+
+div {
+  overflow: auto;
+  -webkit-overflow-scrolling: auto;
+}
+
+h1 {
+  font-family: "Courier New", sans-serif;
+  color: black;
+}
+
+.brand {
+  font-family: "Courier New";
+}
+
+.bgimg {
+    background-image: url("http://www.elisabraun.de/hg_110.jpg");
+    min-height: 100%;
+    background-position: center;
+    background-size: cover
+}
+
+.div_navbar {
+  background: white;
+  margin-bottom: 10%
+}
+
+.abouttext {
+  color: black;
+  padding-bottom: 5vh;
+}
+
+.div_abouttext, .div_work {
+  margin-top: 32vh;
+  margin-left: 12vh;
+  margin-right: 12vh;
+}
+
+.portrait {
+  border-radius: 50%;
+}
+
+.responsive {
+  width: 30vh;
+  height: auto;
+  overflow: scroll;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-image: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,1));
+  color: grey;
+  text-align: center;
+}
+
+#header_background {
+  background-image: linear-gradient(rgba(243, 244, 236,1),rgba(255,255,255,0));
+}
